@@ -1,0 +1,13 @@
+---
+import Layout from "../../layouts/Layout.astro";
+// Fetch posts from API
+const response = await fetch('http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,excerpt,title,link');
+const data = await response.json();
+
+console.log(data);
+
+---
+
+<Layout>
+  <!-- <PostsList /> -->
+</Layout>

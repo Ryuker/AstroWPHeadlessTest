@@ -11,8 +11,10 @@
 - properly handle additional query params
 
 - create pages dynamically using API fetching
-  - [slug].astro 
-- 
+  - [v] [slug].astro 
+    - [] fetch single post from API based on slug
+    - [] render post to the page
+    - [] implement pagination 
 
 - repeat the above with WPGraphQL
 - render the data to the page

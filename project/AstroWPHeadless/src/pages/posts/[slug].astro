@@ -1,13 +1,39 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-// Fetch posts from API
-const response = await fetch('http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,excerpt,title,link');
-const data = await response.json();
 
-console.log(data);
+const { slug } = Astro.params;
+
+const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}&_embed`);
+const [post] = await res.json();
+const myPost = post;
+
+const { title, content, date, _embedded } = myPost;
+const { name: authorName   } = _embedded.author[0];
+const dateFormatted = new Date(date).toLocaleDateString();
+
+console.log('author: ', authorName);
+console.log('date: ', dateFormatted);
+
+// Only necessary in static mode
+export async function getStaticPaths() {
+  const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts`);
+  const posts = await response.json();
+
+  return posts.map(post => {
+    return {
+      params: { slug: post.slug }
+    };
+  });
+}
 
 ---
 
 <Layout>
-  <!-- <PostsList /> -->
+  <h1>{title.rendered}</h1>
+  <div>
+    <span>{authorName}</span>
+    <span>{dateFormatted}</span>
+  </div>
+  <div set:html={content.rendered} />
+  
 </Layout>

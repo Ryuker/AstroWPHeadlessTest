@@ -11,9 +11,6 @@ const { title, content, date, _embedded } = myPost;
 const { name: authorName   } = _embedded.author[0];
 const dateFormatted = new Date(date).toLocaleDateString();
 
-console.log('author: ', authorName);
-console.log('date: ', dateFormatted);
-
 // Only necessary in static mode
 export async function getStaticPaths() {
   const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts`);

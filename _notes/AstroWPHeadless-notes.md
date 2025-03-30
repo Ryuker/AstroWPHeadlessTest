@@ -20,4 +20,8 @@
 - render the data to the page
 
 
+# Usefull:
+- adding multiple authors to wp - [guide](https://rankmath.com/blog/add-multiple-authors-for-posts/)
+
+
 

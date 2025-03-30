@@ -10,7 +10,14 @@ console.log(data);
 <h1>Post List Component</h1>
 <div>
   {data.map(post => 
-    <h2><a href={`/posts/${post.slug}`}>{post.title.rendered}</a></h2>
+    <h2 class="mt-5 mb-1">
+      <a 
+        href={`/posts/${post.slug}`}
+        class="text-blue-800 hover:text-blue-500 text-2xl"
+      >
+        {post.title.rendered}
+      </a>
+    </h2>
     <div set:html={post.excerpt.rendered} />
   )}
   

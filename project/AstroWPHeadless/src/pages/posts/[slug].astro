@@ -3,12 +3,16 @@ import Layout from "../../layouts/Layout.astro";
 
 const { slug } = Astro.params;
 
-const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}&_embed`);
+const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}`);
 const [post] = await res.json();
 const myPost = post;
 
-const { title, content, date, _embedded } = myPost;
-const { name: authorName   } = _embedded.author[0];
+const { 
+    title, 
+    content: { rendered: content}, 
+    date, 
+    authors} = myPost;
+
 const dateFormatted = new Date(date).toLocaleDateString();
 
 // Only necessary in static mode
@@ -16,21 +20,36 @@ export async function getStaticPaths() {
   const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts`);
   const posts = await response.json();
 
-  return posts.map(post => {
+  return posts.map((post: { slug: any; }) => {
     return {
       params: { slug: post.slug }
     };
   });
 }
 
+function capitalizeName(name: string){
+  const firstLetter = name[0].toUpperCase();
+  const rest = name.slice(1);
+  return `${firstLetter}${rest}`;
+}
+
 ---
 
 <Layout>
-  <h1>{title.rendered}</h1>
-  <div>
-    <span>{authorName}</span>
-    <span>{dateFormatted}</span>
+  <div class="container space-y-5">
+    <h1 class="text-2xl text-blue-800 mb-2">{title.rendered}</h1>
+    <div class="inline-flex gap-5">
+      <div class="inline-flex gap-1">
+        { authors.map( (author: { display_name: string; }, index:number) => 
+          <span>
+            {capitalizeName(author.display_name)}{index < authors.length-1 ? ',' : ''}
+          </span> 
+        )}
+      </div>
+      <span>{dateFormatted}</span>
+    </div>
+    <div set:html={content} class="space-y-5" />
   </div>
-  <div set:html={content.rendered} />
+  
   
 </Layout>

@@ -3,3 +3,7 @@ GET http://astrowpheadless.local/wp-json/wp/v2/posts?slug=food-on-a-platter
 
 ### GET all post slugs
 GET http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=slug
+
+### GET all users
+GET http://astrowpheadless.local/wp-json/wp/v2/users
+

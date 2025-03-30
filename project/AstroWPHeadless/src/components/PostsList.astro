@@ -1,6 +1,6 @@
 ---
 // Fetch posts from API
-const response = await fetch('http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,title, excerpt,slug');
+const response = await fetch('http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,title,excerpt,slug');
 const data = await response.json();
 
 console.log(data);

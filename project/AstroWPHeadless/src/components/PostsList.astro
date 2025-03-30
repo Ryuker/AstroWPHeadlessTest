@@ -1,6 +1,6 @@
 ---
 // Fetch posts from API
-const response = await fetch('http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,excerpt,title,link');
+const response = await fetch('http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,title, excerpt,slug');
 const data = await response.json();
 
 console.log(data);
@@ -10,7 +10,7 @@ console.log(data);
 <h1>Post List Component</h1>
 <div>
   {data.map(post => 
-    <h2>{post.title.rendered}</h2>
+    <h2><a href={`/posts/${post.slug}`}>{post.title.rendered}</a></h2>
     <div set:html={post.excerpt.rendered} />
   )}
   

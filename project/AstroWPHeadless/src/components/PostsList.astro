@@ -1,15 +1,22 @@
 ---
+import { Image } from 'astro:assets';
 // Fetch posts from API
-const response = await fetch('http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,title,excerpt,slug');
+const response = await fetch('http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,title,excerpt,slug,_links.wp:featuredmedia,_embedded&_embed');
 const data = await response.json();
 
-console.log(data);
+// console.log(data);
+// console.log('post:', data[0]._embedded['wp:featuredmedia'][0].source_url);
+
+function getFeaturedImgSourceUrl(post) {
+  return post._embedded['wp:featuredmedia'][0].source_url;
+}
 
 ---
 
 <h1>Post List Component</h1>
 <div>
   {data.map(post => 
+    <Image src={getFeaturedImgSourceUrl(post)} alt="Features image" width="500" height="200"/>
     <h2 class="mt-5 mb-1">
       <a 
         href={`/posts/${post.slug}`}

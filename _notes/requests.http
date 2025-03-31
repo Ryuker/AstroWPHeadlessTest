@@ -1,5 +1,10 @@
 ### Get single post by slug
-GET http://astrowpheadless.local/wp-json/wp/v2/posts?slug=food-on-a-platter
+GET http://astrowpheadless.local/wp-json/wp/v2/posts?slug=food-on-a-platter&_embed
+
+
+### Get all posts with embed
+GET http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,title,excerpt,slug,_links.wp:featuredmedia,_embedded&_embed
+
 
 ### GET all post slugs
 GET http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=slug

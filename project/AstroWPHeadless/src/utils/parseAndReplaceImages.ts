@@ -1,5 +1,27 @@
 import { fetchWordPressPost } from './fetchWordpressPost.ts';
 
+export function transformHtml(htmlString: string) {
+  console.log('html:', htmlString);
+  const newPost = htmlString.replace(/<img\s+([^>]*?)src="([^"]+)"([^>]*?)>/g, (_, p1, src, p2) => {
+    const altMatch = p1.match(/alt="([^"]*?)"/) || p2.match(/alt="([^"]*?)"/);
+    const alt = altMatch ? altMatch[1] : '';
+
+    // Replace the img tag with a picture element for responsive images
+    const pictureElement = `
+      <picture>
+        <source srcset="${src.replace(/(\.\w+)$/, '.webp')}" type="image/webp">
+        <source srcset="${src}" type="image/jpeg">
+        <img src="${src}" alt="${alt}" loading="lazy" width="600" height="400">
+      </picture>
+    `;
+
+    return pictureElement;
+  });
+  
+  console.log(newPost);
+  return newPost;
+}
+
 export function replaceImgWithAstroImage(postContent: string) {
   const newPost = postContent.replace(/<img[^>]+src="([^">]+)"([^>]*)\/?>/g, (_, src, attrs) => {
     // Extract the alt attribute if it exists

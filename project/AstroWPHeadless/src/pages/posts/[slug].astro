@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { replaceImgWithAstroImage } from "../../utils/parseAndReplaceImages";
+import { Image } from 'astro:assets';
+import { transformHtml } from "../../utils/parseAndReplaceImages";
 
 const { slug } = Astro.params;
 
@@ -16,7 +17,8 @@ const {
     authors} = myPost;
 
 // replace picture element with Astro Picture element in all the post's images
-const content = replaceImgWithAstroImage(myPost.content.rendered);
+// const content = replaceImgWithAstroImage(myPost.content.rendered);
+const content = transformHtml(myPost.content.rendered);
 // console.log(content);
 
 const dateFormatted = new Date(date).toLocaleDateString();

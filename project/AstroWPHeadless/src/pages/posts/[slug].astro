@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { replaceImgWithAstroImage } from "../../utils/parseAndReplaceImages";
 
 const { slug } = Astro.params;
 
@@ -7,11 +8,16 @@ const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=$
 const [post] = await res.json();
 const myPost = post;
 
+
 const { 
     title, 
-    content: { rendered: content}, 
+    // content: { rendered: content}, 
     date, 
     authors} = myPost;
+
+// replace picture element with Astro Picture element in all the post's images
+const content = replaceImgWithAstroImage(myPost.content.rendered);
+// console.log(content);
 
 const dateFormatted = new Date(date).toLocaleDateString();
 
@@ -36,7 +42,7 @@ function capitalizeName(name: string){
 ---
 
 <Layout>
-  <div class="container space-y-5">
+  <div class="container space-y-5 max-w-2xl">
     <h1 class="text-2xl text-blue-800 mb-2">{title.rendered}</h1>
     <div class="inline-flex gap-5">
       <div class="inline-flex gap-1">
@@ -50,6 +56,4 @@ function capitalizeName(name: string){
     </div>
     <div set:html={content} class="space-y-5" />
   </div>
-  
-  
 </Layout>

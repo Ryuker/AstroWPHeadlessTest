@@ -2,7 +2,7 @@
 GET http://astrowpheadless.local/wp-json/wp/v2/posts?slug=food-on-a-platter&_embed
 
 
-### Get all posts with embed
+### Get all posts with embedded featured image
 GET http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,title,excerpt,slug,_links.wp:featuredmedia,_embedded&_embed
 
 

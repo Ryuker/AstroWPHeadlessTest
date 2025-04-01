@@ -1,0 +1,9 @@
+---
+import { Image } from "astro:assets";
+
+const { src, alt } = Astro.props;
+
+---
+
+<Image src={src} alt={alt} inferSize format="avif" />
+

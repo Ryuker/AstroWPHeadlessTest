@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { Markup } from 'astro-remote';
-import { optimizeImages } from "../../utils/replaceImages";
+import WPImage from '@components/wp/WPImage.astro';
 
 const { slug } = Astro.params;
 
@@ -12,14 +12,9 @@ const myPost = post;
 
 const { 
     title, 
+    content: { rendered: content},
     date, 
     authors} = myPost;
-
-// replace picture element with Astro Picture element in all the post's images
-const optimizeImagesettings = { format: 'avif', inferSize: true };
-const content = await optimizeImages(myPost.content.rendered, optimizeImagesettings);
-
-console.log(content);
 
 const dateFormatted = new Date(date).toLocaleDateString();
 
@@ -56,7 +51,7 @@ function capitalizeName(name: string){
       </div>
       <span>{dateFormatted}</span>
     </div>
-    <!-- <div set:html={content} class="space-y-5" /> -->
-    <Markup content={content}/>
+    
+    <Markup content={content} components={{ img: WPImage }}/>
   </div>
 </Layout>

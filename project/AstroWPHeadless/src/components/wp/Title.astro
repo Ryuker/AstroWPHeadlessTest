@@ -1,0 +1,12 @@
+---
+
+const { as: text } = Astro.props;
+console.log('entering component');
+
+console.log('component', text);
+---
+
+
+<h1 class="text-red-400">
+  <slot />
+</h1>

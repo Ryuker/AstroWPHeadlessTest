@@ -1,5 +1,5 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import PostLayout from "@layouts/PostLayout.astro";
 import { Markup } from 'astro-remote';
 import WPImage from '@components/wp/WPImage.astro';
 
@@ -38,7 +38,7 @@ function capitalizeName(name: string){
 
 ---
 
-<Layout>
+<PostLayout>
   <div class="container space-y-5 max-w-2xl">
     <h1 class="text-2xl text-blue-800 mb-2">{title.rendered}</h1>
     <div class="inline-flex gap-5">

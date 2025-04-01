@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { Image } from 'astro:assets';
+import { Markup } from 'astro-remote';
 import { optimizeImages } from "../../utils/replaceImages";
 
 const { slug } = Astro.params;
@@ -12,13 +12,14 @@ const myPost = post;
 
 const { 
     title, 
-    // content: { rendered: content}, 
     date, 
     authors} = myPost;
 
 // replace picture element with Astro Picture element in all the post's images
 const optimizeImagesettings = { format: 'avif', inferSize: true };
 const content = await optimizeImages(myPost.content.rendered, optimizeImagesettings);
+
+console.log(content);
 
 const dateFormatted = new Date(date).toLocaleDateString();
 
@@ -55,6 +56,7 @@ function capitalizeName(name: string){
       </div>
       <span>{dateFormatted}</span>
     </div>
-    <div set:html={content} class="space-y-5" />
+    <!-- <div set:html={content} class="space-y-5" /> -->
+    <Markup content={content}/>
   </div>
 </Layout>

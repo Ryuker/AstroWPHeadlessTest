@@ -1,0 +1,23 @@
+{
+  "name": "astrowpheadless",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "fetch-posts": "ts-node src/integrations/astro-wordpress-image-optimizer.ts fetch-posts",
+    "extract-image-urls": "ts-node src/integrations/astro-wordpress-image-optimizer.ts extract-image-urls",
+    "optimize-images": "ts-node src/integrations/astro-wordpress-image-optimizer.ts optimize-images",
+    "prebuild": "npm run fetch-posts && npm run extract-image-urls && npm run optimize-images",
+    "build": "npm run prebuild && astro build",
+    "predev": "npm run prebuild",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.17",
+    "astro": "^5.5.5",
+    "node-fetch": "^2.6.7",
+    "p-limit": "^3.0.2",
+    "tailwindcss": "^4.0.17"
+  }
+}

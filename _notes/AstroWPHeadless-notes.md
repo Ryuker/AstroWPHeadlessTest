@@ -23,5 +23,7 @@
 # Usefull:
 - adding multiple authors to wp - [guide](https://rankmath.com/blog/add-multiple-authors-for-posts/)
 
+- rendering remote HTML or Markdown content - [github repo](https://github.com/natemoo-re/astro-remote) 
+
 
 

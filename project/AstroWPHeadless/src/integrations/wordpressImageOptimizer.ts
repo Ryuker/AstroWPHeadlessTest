@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getImage } from 'astro/assets';
 import pLimit from 'p-limit';
 import { Buffer } from 'buffer'; // Ensure Buffer is imported

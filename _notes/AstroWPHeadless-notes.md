@@ -12,8 +12,10 @@
 
 - create pages dynamically using API fetching
   - [v] [slug].astro 
-    - [] fetch single post from API based on slug
-    - [] render post to the page
+    - [v] fetch single post from API based on slug
+    - [v] render post to the page
+      - [v] render optimized images from remote url
+      - [v] convert html tags in content string - using astro-remote package
     - [] implement pagination 
 
 - repeat the above with WPGraphQL

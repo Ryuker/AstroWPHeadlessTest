@@ -16,7 +16,10 @@
     - [v] render post to the page
       - [v] render optimized images from remote url
       - [v] convert html tags in content string - using astro-remote package
-    - [] implement pagination 
+    - [v] implement pagination
+      - [v] sub pages of blogposts (numbered) 
+      - [v] page per slug of blogpost (first page of post)
+      - [] implement from test directory into posts directory
 
 - repeat the above with WPGraphQL
 - render the data to the page
@@ -26,6 +29,11 @@
 - adding multiple authors to wp - [guide](https://rankmath.com/blog/add-multiple-authors-for-posts/)
 
 - rendering remote HTML or Markdown content - [github repo](https://github.com/natemoo-re/astro-remote) 
+
+- adding pagination guide - [guide](https://fullstackdigital.io/blog/headless-wordpress-with-astro-part-2-pagination-and-tags-support/)
+  - I'm making use of nestedPagination though, see [docs](https://docs.astro.build/en/guides/routing/#nested-pagination)
+
+- split wordpress post in multiple pages - [guide](https://www.wpbeginner.com/wp-tutorials/how-to-split-wordpress-posts-into-multiple-pages/)
 
 
 

@@ -1,5 +1,8 @@
 ---
 import { Image } from 'astro:assets';
+
+const { section } = Astro.props;
+
 // Fetch posts from API
 const response = await fetch('http://astrowpheadless.local/wp-json/wp/v2/posts?_fields=author,id,title,excerpt,slug,_links.wp:featuredmedia,_embedded&_embed');
 const data = await response.json();
@@ -19,7 +22,7 @@ function getFeaturedImgSourceUrl(post) {
     <Image src={getFeaturedImgSourceUrl(post)} alt="Features image" width="500" height="200"/>
     <h2 class="mt-5 mb-1">
       <a 
-        href={`/posts/${post.slug}`}
+        href={`/${section}/${post.slug}`}
         class="text-blue-800 hover:text-blue-500 text-2xl"
       >
         {post.title.rendered}

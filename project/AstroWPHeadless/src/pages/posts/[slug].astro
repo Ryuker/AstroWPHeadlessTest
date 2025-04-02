@@ -9,7 +9,6 @@ const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=$
 const [post] = await res.json();
 const myPost = post;
 
-
 const { 
     title, 
     content: { rendered: content},
@@ -23,11 +22,17 @@ export async function getStaticPaths() {
   const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts`);
   const posts = await response.json();
 
-  return posts.map((post: { slug: any; }) => {
+  const myPosts = posts.map((post: { slug: any; }) => {
     return {
-      params: { slug: post.slug }
+      params: { 
+        slug: post.slug
+      }
     };
   });
+
+  console.log(myPosts);
+
+  return myPosts;
 }
 
 function capitalizeName(name: string){

@@ -1,0 +1,138 @@
+---
+import type { GetStaticPaths } from 'astro';
+import PostLayout from "@layouts/PostLayout.astro";
+import { Markup } from 'astro-remote';
+import WPImage from '@components/wp/WPImage.astro';
+
+// const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}`);
+// const [post] = await res.json();
+// const myPost = post;
+
+// const { 
+//     title, 
+//     content: { rendered: content},
+//     date, 
+//     authors} = myPost;
+
+// const dateFormatted = new Date(date).toLocaleDateString();
+
+// Only necessary in static mode
+export const getStaticPaths = (async ({paginate}) => {
+  const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts`);
+  const posts = await response.json();
+
+  const myPosts = await posts.map((post) => {
+    // console.log(post.authors);
+    return {
+      slug: post.slug,
+      date: post.date,
+      authors: post.authors,
+      pages: [
+        { data: post},
+        // temporary page data objects below, remove when done testing
+        { data: { 
+            title: {
+              rendered: `some page 2 Title for ${post.slug}`,
+            },
+            content: {
+              rendered: '<p>some page 2 rendered content</p>'
+            }
+          }
+        },
+        { data: { 
+            title: {
+              rendered: `some page 3 Title  for ${post.slug}`,
+            },
+            content: {
+              rendered: '<p>some page 3 rendered content</p>'
+            }
+          }
+        },
+      ]
+    };
+  });
+
+  // console.log(myPosts);
+
+  const allSlugs = await myPosts.map((post) => post.slug);
+  // console.log(myPosts);
+  // console.log('slugs', allSlugs);
+  // console.log('pages', myPosts[0].pages[0]);
+
+  const pages = myPosts.flatMap((post) => {
+    // console.log('test:', post.pages);
+    const subPages = paginate(post.pages, {
+      params: { 
+        slug: post.slug,
+      },
+      props: {
+        date: post.date,
+        authors: post.authors
+      },
+      pageSize: 1
+    });
+    // console.log('subPages:', post.slug, subPages);
+    return subPages;
+  });
+
+  // const slug = 'my-test';
+  // const pages = paginate(myPosts, {
+  //   params: { slug },
+  //   pageSize: 3
+  // });
+
+  // console.log('pages', pages);
+  return pages;
+
+  // const pages = paginate(myPosts, {
+  //   params: { slug },
+  //   pageSize: 3
+  // });
+	
+  
+
+  // return pages;
+}) satisfies GetStaticPaths;
+
+const { page, date, authors } = Astro.props;
+
+const pageData = page.data[0].data;
+
+const {
+  title,
+  content: { rendered: content},
+} = pageData;
+
+
+const dateFormatted = new Date(date).toLocaleDateString();
+
+function capitalizeName(name: string){
+  const firstLetter = name[0].toUpperCase();
+  const rest = name.slice(1);
+  return `${firstLetter}${rest}`;
+}
+
+---
+
+<PostLayout>
+  <div class="container space-y-5 max-w-2xl">
+    <div class="flex flex-col">
+      <div>section-slug: {page.slug}</div>
+      <div>current-url: {page.url.current}</div>
+    </div>
+    
+    <h1 class="text-2xl text-blue-800 mb-2">{title.rendered}</h1>
+    <div class="inline-flex gap-5">
+      <div class="inline-flex gap-1">
+        { authors.map( (author: { display_name: string; }, index:number) => 
+          <span>
+            {capitalizeName(author.display_name)}{index < authors.length-1 ? ',' : ''}
+          </span> 
+        )}
+      </div>
+      <span>{dateFormatted}</span>
+    </div>
+    
+    <Markup content={content} components={{ img: WPImage }}/>
+  </div>
+</Layout>

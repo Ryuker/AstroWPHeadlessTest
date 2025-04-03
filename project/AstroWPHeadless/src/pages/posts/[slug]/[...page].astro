@@ -83,7 +83,7 @@ function capitalizeName(name: string){
   return `${firstLetter}${rest}`;
 }
 
-const pathName = new URL(Astro.request.url).pathname.split(`${post.slug}/`);
+console.log(page);
 ---
 
 <PostLayout>
@@ -112,10 +112,10 @@ const pathName = new URL(Astro.request.url).pathname.split(`${post.slug}/`);
         length={page.lastPage} 
         currentUrl={page.url.current} 
         currentPage={page.currentPage} 
-        firstUrl={pathName} 
+        firstUrl={page.url.first} 
         prevUrl={page.url.prev} 
         nextUrl={page.url.next} 
-        lastUrl={`/${pathName}/${page.lastPage}`}
+        lastUrl={`/${page.url.first}/${page.lastPage}`}
       />
 
   </div>

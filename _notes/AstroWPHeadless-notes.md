@@ -19,8 +19,14 @@
     - [v] implement pagination
       - [v] sub pages of blogposts (numbered) 
       - [v] page per slug of blogpost (first page of post)
-      - [] implement from test directory into posts directory
-      - [] implement pagination controls
+      - [v] implement from test directory into posts directory
+      - [v] implement pagination controls
+        - [] pagination responsiveness
+      
+- [] setup content collection for posts
+  - [] move fetch of posts into code
+  - [] pull in the posts from the collection into [...page].astro
+  - [] pull in the posts from the collection into [index].astro
 
 - repeat the above with WPGraphQL
 - render the data to the page

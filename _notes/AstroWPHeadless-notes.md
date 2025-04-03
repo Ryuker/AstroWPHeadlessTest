@@ -20,6 +20,7 @@
       - [v] sub pages of blogposts (numbered) 
       - [v] page per slug of blogpost (first page of post)
       - [] implement from test directory into posts directory
+      - [] implement pagination controls
 
 - repeat the above with WPGraphQL
 - render the data to the page

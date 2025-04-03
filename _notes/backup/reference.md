@@ -37,3 +37,20 @@ console.log('component', id);
 ``` TS
 splitString(content, /<!--nextpage-->/)
 ```
+
+## Fetch single post by slug
+``` TS
+const { slug } = Astro.params;
+
+const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}`);
+const [post] = await res.json();
+const myPost = post;
+
+const { 
+    title, 
+    content: { rendered: content},
+    date, 
+    authors} = myPost;
+
+const dateFormatted = new Date(date).toLocaleDateString();
+```

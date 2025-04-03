@@ -1,0 +1,124 @@
+---
+import type { GetStaticPaths } from 'astro';
+import PostLayout from "@layouts/PostLayout.astro";
+import { Markup } from 'astro-remote';
+import WPImage from '@components/wp/WPImage.astro';
+import { splitString } from '@utils/helpers';
+import Pagination from '@components/Pagination.astro';
+
+// const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}`);
+// const [post] = await res.json();
+// const myPost = post;
+
+// const { 
+//     title, 
+//     content: { rendered: content},
+//     date, 
+//     authors} = myPost;
+
+// const dateFormatted = new Date(date).toLocaleDateString();
+
+// Only necessary in static mode
+export const getStaticPaths = (async ({paginate}) => {
+  const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts`);
+  const posts = await response.json();
+
+  const myPosts = await posts.map((post) => {
+    const { content: { rendered: content} } = post;
+    const pagesContent = splitString(content, /<!--nextpage-->/ );
+    const pages = pagesContent.map(page =>  {
+      return { content: page} 
+    });
+
+    return {
+      slug: post.slug,
+      date: post.date,
+      authors: post.authors,
+      data: post,
+      pages: pages
+    };
+  });
+
+  // const allSlugs = await myPosts.map((post) => post.slug);
+  // console.log(allSlugs);
+
+  const pages = myPosts.flatMap((post) => {
+    // console.log('test:', post.pages);
+    const subPages = paginate(post.pages, {
+      params: { 
+        slug: post.slug,
+      },
+      props: {
+        date: post.date,
+        authors: post.authors,
+        post: post.data
+      },
+      pageSize: 1
+    });
+    return subPages;
+  });
+
+  return pages;
+
+}) satisfies GetStaticPaths;
+
+const { page, date, authors, post } = Astro.props;
+
+const { 
+  title: { rendered: title } 
+} = post;
+
+console.log(title);
+
+const {
+  content
+} = page.data[0];
+
+
+const dateFormatted = new Date(date).toLocaleDateString();
+
+function capitalizeName(name: string){
+  const firstLetter = name[0].toUpperCase();
+  const rest = name.slice(1);
+  return `${firstLetter}${rest}`;
+}
+
+const pathName = new URL(Astro.request.url).pathname.split(`${post.slug}/`);
+---
+
+<PostLayout>
+  <div class="container space-y-5 max-w-2xl">
+    <div class="flex flex-col">
+      <div>section-slug: {post.slug}</div>
+      <div>current-url: {page.url.current}</div>
+    </div>
+    
+    <h1 class="text-2xl text-blue-800 mb-2">{title}</h1>
+    <div class="inline-flex gap-5">
+      <div class="inline-flex gap-1">
+        { authors.map( (author: { display_name: string; }, index:number) => 
+          <span>
+            {capitalizeName(author.display_name)}{index < authors.length-1 ? ',' : ''}
+          </span> 
+        )}
+      </div>
+      <span>{dateFormatted}</span>
+    </div>
+    
+    <Markup content={content} components={{ img: WPImage }}/>
+    
+    <Pagination
+        slug={post.slug}
+        length={page.lastPage} 
+        currentUrl={page.url.current} 
+        currentPage={page.currentPage} 
+        firstUrl={pathName} 
+        prevUrl={page.url.prev} 
+        nextUrl={page.url.next} 
+        lastUrl={`/${pathName}/${page.lastPage}`}
+      />
+
+  </div>
+  
+
+</Layout>

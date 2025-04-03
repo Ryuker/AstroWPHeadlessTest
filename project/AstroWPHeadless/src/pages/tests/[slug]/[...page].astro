@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import PostLayout from "@layouts/PostLayout.astro";
 import { Markup } from 'astro-remote';
 import WPImage from '@components/wp/WPImage.astro';
+import { splitString } from '@utils/helpers';
 
 // const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}`);
 // const [post] = await res.json();
@@ -22,42 +23,23 @@ export const getStaticPaths = (async ({paginate}) => {
   const posts = await response.json();
 
   const myPosts = await posts.map((post) => {
-    // console.log(post.authors);
+    const { content: { rendered: content} } = post;
+    const pagesContent = splitString(content, /<!--nextpage-->/ );
+    const pages = pagesContent.map(page =>  {
+      return { content: page} 
+    });
+
     return {
       slug: post.slug,
       date: post.date,
       authors: post.authors,
-      pages: [
-        { data: post},
-        // temporary page data objects below, remove when done testing
-        { data: { 
-            title: {
-              rendered: `some page 2 Title for ${post.slug}`,
-            },
-            content: {
-              rendered: '<p>some page 2 rendered content</p>'
-            }
-          }
-        },
-        { data: { 
-            title: {
-              rendered: `some page 3 Title  for ${post.slug}`,
-            },
-            content: {
-              rendered: '<p>some page 3 rendered content</p>'
-            }
-          }
-        },
-      ]
+      data: post,
+      pages: pages
     };
   });
 
-  // console.log(myPosts);
-
-  const allSlugs = await myPosts.map((post) => post.slug);
-  // console.log(myPosts);
-  // console.log('slugs', allSlugs);
-  // console.log('pages', myPosts[0].pages[0]);
+  // const allSlugs = await myPosts.map((post) => post.slug);
+  // console.log(allSlugs);
 
   const pages = myPosts.flatMap((post) => {
     // console.log('test:', post.pages);
@@ -67,7 +49,8 @@ export const getStaticPaths = (async ({paginate}) => {
       },
       props: {
         date: post.date,
-        authors: post.authors
+        authors: post.authors,
+        post: post.data
       },
       pageSize: 1
     });
@@ -75,33 +58,21 @@ export const getStaticPaths = (async ({paginate}) => {
     return subPages;
   });
 
-  // const slug = 'my-test';
-  // const pages = paginate(myPosts, {
-  //   params: { slug },
-  //   pageSize: 3
-  // });
-
-  // console.log('pages', pages);
   return pages;
 
-  // const pages = paginate(myPosts, {
-  //   params: { slug },
-  //   pageSize: 3
-  // });
-	
-  
-
-  // return pages;
 }) satisfies GetStaticPaths;
 
-const { page, date, authors } = Astro.props;
+const { page, date, authors, post } = Astro.props;
 
-const pageData = page.data[0].data;
+const { 
+  title: { rendered: title } 
+} = post;
+
+console.log(title);
 
 const {
-  title,
-  content: { rendered: content},
-} = pageData;
+  content
+} = page.data[0];
 
 
 const dateFormatted = new Date(date).toLocaleDateString();
@@ -121,7 +92,7 @@ function capitalizeName(name: string){
       <div>current-url: {page.url.current}</div>
     </div>
     
-    <h1 class="text-2xl text-blue-800 mb-2">{title.rendered}</h1>
+    <h1 class="text-2xl text-blue-800 mb-2">{title}</h1>
     <div class="inline-flex gap-5">
       <div class="inline-flex gap-1">
         { authors.map( (author: { display_name: string; }, index:number) => 

@@ -31,3 +31,9 @@ console.log('component', id);
 </h1>
 
 ```
+
+## Split content string at next page
+- uses a RexExp check
+``` TS
+splitString(content, /<!--nextpage-->/)
+```

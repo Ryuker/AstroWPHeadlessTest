@@ -5,3 +5,9 @@ export async function replaceAsync(string, regexp, replacerFunction) {
   let i = 0;
   return string.replace(regexp, () => replacements[i++]);
 }
+
+// split string  at regex match
+export function splitString(text: string, match: RegExp){
+  const splitStringArr = text.split(match);
+  return splitStringArr;
+}

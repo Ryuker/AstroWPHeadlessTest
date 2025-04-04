@@ -89,7 +89,8 @@ console.log(page);
     
     <Markup content={content} components={{ img: WPImage }}/>
     
-    <Pagination
+    {page.total > 1 && 
+      <Pagination
         slug={post.slug}
         length={page.lastPage} 
         currentUrl={page.url.current} 
@@ -99,6 +100,8 @@ console.log(page);
         nextUrl={page.url.next} 
         lastUrl={page.url.last}
       />
+    }
+    
 
   </div>
   

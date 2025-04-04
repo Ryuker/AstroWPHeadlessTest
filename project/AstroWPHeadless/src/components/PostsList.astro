@@ -16,7 +16,7 @@ function getFeaturedImgSourceUrl(post) {
 <h1>Post List Component</h1>
 <div>
   {posts.map(post => 
-    <Image src={getFeaturedImgSourceUrl(post)} alt="Features image" width="500" height="200"/>
+    <Image src={getFeaturedImgSourceUrl(post)} alt="Featured image" width="500" height="200" format="avif"/>
     <h2 class="mt-5 mb-1">
       <a 
         href={`/${section}/${post.data.slug}`}

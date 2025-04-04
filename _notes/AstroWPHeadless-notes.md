@@ -44,6 +44,7 @@
 
 - Content Collections
   - building a custom loader - [docs](https://docs.astro.build/en/guides/content-collections/)
+  - content layer deep dive - [guide](https://astro.build/blog/content-layer-deep-dive/)
 
 
 

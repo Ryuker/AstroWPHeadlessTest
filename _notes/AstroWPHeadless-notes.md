@@ -42,5 +42,8 @@
 
 - split wordpress post in multiple pages - [guide](https://www.wpbeginner.com/wp-tutorials/how-to-split-wordpress-posts-into-multiple-pages/)
 
+- Content Collections
+  - building a custom loader - [docs](https://docs.astro.build/en/guides/content-collections/)
+
 
 

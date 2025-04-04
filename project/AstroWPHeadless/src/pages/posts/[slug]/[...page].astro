@@ -5,6 +5,7 @@ import { Markup } from 'astro-remote';
 import WPImage from '@components/wp/WPImage.astro';
 import { splitString } from '@utils/helpers';
 import Pagination from '@components/Pagination.astro';
+import { getCollection } from 'astro:content';
 
 // const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}`);
 // const [post] = await res.json();
@@ -20,37 +21,16 @@ import Pagination from '@components/Pagination.astro';
 
 // Only necessary in static mode
 export const getStaticPaths = (async ({paginate}) => {
-  const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts`);
-  const posts = await response.json();
+  const posts = await getCollection('posts');
 
-  const myPosts = await posts.map((post) => {
-    const { content: { rendered: content} } = post;
-    const pagesContent = splitString(content, /<!--nextpage-->/ );
-    const pages = pagesContent.map(page =>  {
-      return { content: page} 
-    });
-
-    return {
-      slug: post.slug,
-      date: post.date,
-      authors: post.authors,
-      data: post,
-      pages: pages
-    };
-  });
-
-  // const allSlugs = await myPosts.map((post) => post.slug);
-  // console.log(allSlugs);
-
-  const pages = myPosts.flatMap((post) => {
-    // console.log('test:', post.pages);
-    const subPages = paginate(post.pages, {
+  const pages = posts.flatMap((post) => {
+    const subPages = paginate(post.data.pages, {
       params: { 
-        slug: post.slug,
+        slug: post.data.slug,
       },
       props: {
-        date: post.date,
-        authors: post.authors,
+        date: post.data.date,
+        authors: post.data.authors,
         post: post.data
       },
       pageSize: 1
@@ -73,6 +53,8 @@ console.log(title);
 const {
   content
 } = page.data[0];
+
+console.log('page', page);
 
 
 const dateFormatted = new Date(date).toLocaleDateString();
@@ -115,7 +97,7 @@ console.log(page);
         firstUrl={page.url.first} 
         prevUrl={page.url.prev} 
         nextUrl={page.url.next} 
-        lastUrl={`/${page.url.first}/${page.lastPage}`}
+        lastUrl={page.url.last}
       />
 
   </div>

@@ -3,7 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import PostLayout from "@layouts/PostLayout.astro";
 import { Markup } from 'astro-remote';
 import WPImage from '@components/wp/WPImage.astro';
-import { splitString } from '@utils/helpers';
+import { getCollection } from 'astro:content';
 
 // const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}`);
 // const [post] = await res.json();
@@ -19,29 +19,19 @@ import { splitString } from '@utils/helpers';
 
 // Only necessary in static mode
 export const getStaticPaths = (async ({paginate}) => {
-  const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts`);
-  const posts = await response.json();
+  const posts = await getCollection('posts');
+  console.log('posts', posts.length);
+  // console.log(posts[1]);
 
-  const myPosts = await posts.map((post) => {
-    const { content: { rendered: content} } = post;
-    const pagesContent = splitString(content, /<!--nextpage-->/ );
-    const pages = pagesContent.map(page =>  {
-      return { content: page} 
-    });
+  // const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts`);
+  // const posts = await response.json();
 
-    return {
-      slug: post.slug,
-      date: post.date,
-      authors: post.authors,
-      data: post,
-      pages: pages
-    };
-  });
+  
 
-  // const allSlugs = await myPosts.map((post) => post.slug);
-  // console.log(allSlugs);
+  const allSlugs = await posts.map((post) => post.data.slug);
+  console.log(allSlugs);
 
-  const pages = myPosts.flatMap((post) => {
+  const pages = posts.flatMap((post) => {
     // console.log('test:', post.pages);
     const subPages = paginate(post.pages, {
       params: { 

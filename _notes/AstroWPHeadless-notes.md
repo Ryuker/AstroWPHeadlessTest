@@ -26,7 +26,9 @@
 - [v] setup content collection for posts
   - [v] move fetch of posts into code
   - [v] pull in the posts from the collection into [...page].astro
-  - [] pull in the posts from the collection into [index].astro
+  - [v] pull in the posts from the collection into [index].astro
+  - setup ZOD
+    [] setup ZOD schema for wordpress posts
 
 - repeat the above with WPGraphQL
 - render the data to the page

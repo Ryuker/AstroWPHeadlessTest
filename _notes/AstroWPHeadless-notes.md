@@ -23,9 +23,9 @@
       - [v] implement pagination controls
         - [] pagination responsiveness
       
-- [] setup content collection for posts
-  - [] move fetch of posts into code
-  - [] pull in the posts from the collection into [...page].astro
+- [v] setup content collection for posts
+  - [v] move fetch of posts into code
+  - [v] pull in the posts from the collection into [...page].astro
   - [] pull in the posts from the collection into [index].astro
 
 - repeat the above with WPGraphQL

@@ -5,7 +5,7 @@ console.log('loading content');
 
 const posts = defineCollection({
   loader: async () => {
-    const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts`);
+    const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?wp:featuredmedia,_embedded&_embed`);
     const posts = await response.json();
 
     // console.log(posts[0]);

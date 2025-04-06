@@ -1,4 +1,5 @@
 ---
+import Pagination from '@components/Pagination.astro';
 import PostsList from '@components/PostsList.astro';
 import Layout from '@layouts/Layout.astro';
 import type { GetStaticPaths } from 'astro';
@@ -24,5 +25,16 @@ console.log('page', page.data);
   <a href="/" class="hover:text-blue-400">Back Home</a>
   <div class="container mt-5 max-w-lg">
     <PostsList section="posts" posts={page.data} />
+    {page.total > 1 && 
+      <Pagination
+        slug='posts'
+        length={page.lastPage} 
+        currentUrl={page.url.current} 
+        currentPage={page.currentPage} 
+        firstUrl={page.url.first} 
+        prevUrl={page.url.prev} 
+        nextUrl={page.url.next} 
+        lastUrl={page.url.last}
+      />
   </div>
 </Layout>

@@ -39,6 +39,13 @@
 - [] Build tests
   - [] build to static pages in dist folder
   - [] try to deploy to github pages
+
+- [] Test WP HTML Tags
+- [] Test Custom WP Block output in fetch result
+
+
+
+- [] Clean up Project
  
 
 

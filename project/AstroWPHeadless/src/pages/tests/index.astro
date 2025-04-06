@@ -1,9 +1,12 @@
 ---
 import PostsList from '@components/PostsList.astro';
 import Layout from '@layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = getCollection('posts');
 
 ---
 
 <Layout>
-  <PostsList section="tests" />
+  <PostsList section="tests" posts="posts" />
 </Layout>

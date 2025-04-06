@@ -1,0 +1,28 @@
+---
+import PostsList from '@components/PostsList.astro';
+import Layout from '@layouts/Layout.astro';
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+
+
+export const getStaticPaths = (async ({paginate}) => {
+  const posts = await getCollection('posts');
+
+  return paginate(posts, {
+    pageSize: 2,
+  })
+
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+console.log('page', page.data);
+
+---
+
+<Layout>
+  <a href="/" class="hover:text-blue-400">Back Home</a>
+  <div class="container mt-5 max-w-lg">
+    <PostsList section="posts" posts={page.data} />
+  </div>
+</Layout>

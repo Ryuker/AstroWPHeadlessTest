@@ -22,7 +22,7 @@
       - [v] implement from test directory into posts directory
       - [v] implement pagination controls
         - [] pagination responsiveness
-    - [] add pagination to posts index page
+    - [v] add pagination to posts index page
       - this doesn't need all the post content from the collection, we can filter it out before creating the pages.
       - 
       

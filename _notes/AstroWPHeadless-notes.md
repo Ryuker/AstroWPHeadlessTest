@@ -7,7 +7,7 @@
 - [v] connect Astro to WP through GET calls
 - [v] process JSON data
 - [v] properly parse the content in the JSON and render it to a page
-- handle pagination
+- [v] handle pagination
 - properly handle additional query params
 
 - create pages dynamically using API fetching
@@ -23,8 +23,6 @@
       - [v] implement pagination controls
         - [] pagination responsiveness
     - [v] add pagination to posts index page
-      - this doesn't need all the post content from the collection, we can filter it out before creating the pages.
-      - 
       
 - [v] setup content collection for posts
   - [v] move fetch of posts into code
@@ -33,8 +31,16 @@
   - setup ZOD
     [] setup ZOD schema for wordpress posts
 
-- repeat the above with WPGraphQL
-- render the data to the page
+- [] repeat the above with WPGraphQL
+  - [] install WPGraphQL plugin
+  - [] create new collection ('graphql-posts')
+  - [] retrieve posts using graphql query
+
+- [] Build tests
+  - [] build to static pages in dist folder
+  - [] try to deploy to github pages
+ 
+
 
 
 # Usefull:

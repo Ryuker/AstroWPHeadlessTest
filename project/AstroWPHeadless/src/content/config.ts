@@ -14,6 +14,8 @@ const GQLPosts = defineCollection({
   // schema: /* ... */
 });
 
+console.log(GQLPosts);
+
 export const collections = {
 	posts,
   GQLPosts,

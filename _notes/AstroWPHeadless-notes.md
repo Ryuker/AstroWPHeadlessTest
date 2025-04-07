@@ -33,13 +33,14 @@
 
   - [v] implement custom loader for fetching
     - [v] use loader in content collection of posts
-    
+
 
 - [] repeat the above with WPGraphQL
-  - [] 
-  - [] install WPGraphQL plugin
-  - [] create new collection ('graphql-posts')
-  - [] retrieve posts using graphql query
+  - [v] install WPGraphQL plugin
+  - [v] create new collection ('graphql-posts')
+  - [v] retrieve posts using graphql query
+    - [v] add support for retrieving authors with a custom plugin
+  - [] setup schema for posts so they have an accessible object setup
 
 - [] Build tests
   - [] build to static pages in dist folder

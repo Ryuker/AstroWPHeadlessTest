@@ -3,9 +3,9 @@ import type { Loader } from 'astro/loaders';
 
 console.log('loading content');
 
-export const postsLoader: Loader = {
-	name: 'posts-loader',
-	load: async (context) => {
+export const gqlLoader: Loader = {
+  name: 'posts-loader',
+  load: async (context) => {
     const response =  await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?wp:featuredmedia,_embedded&_embed`);
     const posts = await response.json();
 
@@ -35,8 +35,8 @@ export const postsLoader: Loader = {
 
     context.store.set({
       id: '23h2bhbhb22b',
-			data: myPosts
-		});
+      data: myPosts
+    });
   },
   // schema: async () => z.object({
   //   // ...

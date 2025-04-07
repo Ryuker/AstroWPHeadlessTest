@@ -31,7 +31,12 @@
   - setup ZOD
     [] setup ZOD schema for wordpress posts
 
+  - [v] implement custom loader for fetching
+    - [v] use loader in content collection of posts
+    
+
 - [] repeat the above with WPGraphQL
+  - [] 
   - [] install WPGraphQL plugin
   - [] create new collection ('graphql-posts')
   - [] retrieve posts using graphql query

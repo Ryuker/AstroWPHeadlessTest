@@ -21,17 +21,17 @@ import { getCollection } from 'astro:content';
 
 // Only necessary in static mode
 export const getStaticPaths = (async ({paginate}) => {
-  const posts = await getCollection('posts');
+  const posts = await getCollection('posts').then(data => data[0].data);
 
   const pages = posts.flatMap((post) => {
-    const subPages = paginate(post.data.pages, {
+    const subPages = paginate(post.pages, {
       params: { 
-        slug: post.data.slug,
+        slug: post.slug,
       },
       props: {
-        date: post.data.date,
-        authors: post.data.authors,
-        post: post.data
+        date: post.date,
+        authors: post.authors,
+        post: post
       },
       pageSize: 1
     });

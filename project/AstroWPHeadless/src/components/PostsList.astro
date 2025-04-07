@@ -4,10 +4,10 @@ import { Image } from 'astro:assets';
 const { posts, section } = Astro.props;
 
 function getFeaturedImgSourceUrl(post) {
-  return post.data._embedded['wp:featuredmedia'][0].source_url;
+  return post._embedded['wp:featuredmedia'][0].source_url;
 }
 
-console.log('posts', posts.length);
+// console.log('posts', posts[0]);
 
 ---
 
@@ -18,13 +18,13 @@ console.log('posts', posts.length);
       <Image src={getFeaturedImgSourceUrl(post)} alt="Featured image" width="500" height="200" format="avif"/>
       <h2 class="mt-5 mb-1">
         <a 
-          href={`/${section}/${post.data.slug}`}
+          href={`/${section}/${post.slug}`}
           class="text-blue-800 hover:text-blue-500 text-2xl"
         >
-          {post.data.title.rendered}
+          {post.title.rendered}
         </a>
       </h2>
-      <div set:html={post.data.excerpt.rendered} />
+      <div set:html={post.excerpt.rendered} />
     </div>
   )}
   

@@ -63,6 +63,6 @@
 - Content Collections
   - building a custom loader - [docs](https://docs.astro.build/en/guides/content-collections/)
   - content layer deep dive - [guide](https://astro.build/blog/content-layer-deep-dive/)
-
+  - how to build a loader setup - [guide](https://nuro.dev/posts/how_to_build_an_astro_collection_loader/)
 
 

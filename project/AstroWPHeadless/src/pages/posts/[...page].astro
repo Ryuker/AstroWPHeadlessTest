@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 
 
 export const getStaticPaths = (async ({paginate}) => {
-  const posts = await getCollection('posts');
+  const posts = await getCollection('posts').then(data => data[0].data);
 
   return paginate(posts, {
     pageSize: 2,

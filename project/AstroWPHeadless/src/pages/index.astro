@@ -3,8 +3,10 @@ import PostsList from '@components/PostsList.astro';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
-const posts = await getCollection('posts');
-const filteredPosts = posts.filter((_, index) => index < 4);
+const posts = await getCollection('posts').then(data => data[0].data);
+const filteredPosts = posts.filter((_: any, index: number) => index < 4);
+
+// console.log(filteredPosts[0]);
 
 ---
 

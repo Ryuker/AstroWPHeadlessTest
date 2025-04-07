@@ -11,7 +11,8 @@
       "@assets/*": ["src/assets/*"],
       "@pages/*": ["src/pages/*"],
       "@utils/*": ["src/utils/*"],
-      "@integrations/*": ["src/integrations/*"]
+      "@integrations/*": ["src/integrations/*"],
+      "@loaders/*": ["src/loaders/*"]
     },
   },
 }

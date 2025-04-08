@@ -35,12 +35,19 @@
     - [v] use loader in content collection of posts
 
 
-- [] repeat the above with WPGraphQL
+- [v] repeat the above with WPGraphQL
   - [v] install WPGraphQL plugin
   - [v] create new collection ('graphql-posts')
   - [v] retrieve posts using graphql query
     - [v] add support for retrieving authors with a custom plugin
-  - [] setup schema for posts so they have an accessible object setup
+  - [v] setup schema for posts so they have an accessible object setup
+  - - [v] define postSchema's in content folder
+  - - [v] derive type from schema in content folder
+  - - [v] add transformer methods to ensure post object matches schema
+  - [v] use schema's in collections
+  - [v] modify components and pages to be able to use posts and GQLPosts without errors
+    - [v] there should be no knowledge in the components of the API data specifics.
+  
 
 - [] Build tests
   - [] build to static pages in dist folder
@@ -70,5 +77,8 @@
   - building a custom loader - [docs](https://docs.astro.build/en/guides/content-collections/)
   - content layer deep dive - [guide](https://astro.build/blog/content-layer-deep-dive/)
   - how to build a loader setup - [guide](https://nuro.dev/posts/how_to_build_an_astro_collection_loader/)
+
+- Setting up ZOD Schema - [guide](https://andrewkepson.com/blog/headless-wordpress/build-time-astro-content-layer-api/)
+- Using ZOD for Types - [guide](https://www.allthingstypescript.dev/p/using-zod-schemas-as-source-of-truth)
 
 

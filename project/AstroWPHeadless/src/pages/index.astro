@@ -2,11 +2,13 @@
 import PostsList from '@components/PostsList.astro';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import TestGQL from '@components/TestGQL.astro';
+import type { Post } from '@content/types/post';
 
-const posts = await getCollection('posts').then(data => data[0].data);
+
+const posts = await getCollection('GQLPosts').then(data => data[0].data) as Post[];
+
 const filteredPosts = posts.filter((_: any, index: number) => index < 4);
-
-// console.log(filteredPosts[0]);
 
 ---
 
@@ -15,8 +17,10 @@ const filteredPosts = posts.filter((_: any, index: number) => index < 4);
   <a href="/posts" class="text-2xl hover:text-blue-300">See posts</a>
 
   <div class="container mt-5 max-w-lg my-20">
-    <PostsList section="index" posts={filteredPosts}/>
+    <PostsList section="posts" posts={filteredPosts}/>
     <a href="/posts" class="p-3 hover:text-blue-300 border-2 rounded-lg">See All Posts</a>
   </div>
+
+  <TestGQL />
 
 </Layout>

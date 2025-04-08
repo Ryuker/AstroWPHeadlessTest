@@ -12,7 +12,8 @@
       "@pages/*": ["src/pages/*"],
       "@utils/*": ["src/utils/*"],
       "@integrations/*": ["src/integrations/*"],
-      "@loaders/*": ["src/loaders/*"]
+      "@loaders/*": ["src/loaders/*"],
+      "@content/*": ["src/content/*"],
     },
   },
 }

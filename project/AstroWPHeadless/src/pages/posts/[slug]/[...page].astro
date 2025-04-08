@@ -6,6 +6,7 @@ import WPImage from '@components/wp/WPImage.astro';
 import { splitString } from '@utils/helpers';
 import Pagination from '@components/Pagination.astro';
 import { getCollection } from 'astro:content';
+import type { Post } from '@content/types/post';
 
 // const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}`);
 // const [post] = await res.json();
@@ -21,7 +22,7 @@ import { getCollection } from 'astro:content';
 
 // Only necessary in static mode
 export const getStaticPaths = (async ({paginate}) => {
-  const posts = await getCollection('posts').then(data => data[0].data);
+  const posts = await getCollection('posts').then(data => data[0].data) as Post[];
 
   const pages = posts.flatMap((post) => {
     const subPages = paginate(post.pages, {
@@ -45,21 +46,22 @@ export const getStaticPaths = (async ({paginate}) => {
 const { page, date, authors, post } = Astro.props;
 
 const { 
-  title: { rendered: title } 
+  title
 } = post;
-
-console.log(title);
 
 const {
   content
 } = page.data[0];
 
-console.log('page', page);
+// console.log('page', page);
 
+
+console.log(authors);
 
 const dateFormatted = new Date(date).toLocaleDateString();
 
 function capitalizeName(name: string){
+  console.log('test', name);
   const firstLetter = name[0].toUpperCase();
   const rest = name.slice(1);
   return `${firstLetter}${rest}`;
@@ -78,9 +80,9 @@ console.log(page);
     <h1 class="text-2xl text-blue-800 mb-2">{title}</h1>
     <div class="inline-flex gap-5">
       <div class="inline-flex gap-1">
-        { authors.map( (author: { display_name: string; }, index:number) => 
+        { authors.map( (author, index:number) => 
           <span>
-            {capitalizeName(author.display_name)}{index < authors.length-1 ? ',' : ''}
+            {capitalizeName(author.name)}{index < authors.length-1 ? ',' : ''}
           </span> 
         )}
       </div>

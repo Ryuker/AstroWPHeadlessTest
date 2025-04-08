@@ -1,10 +1,14 @@
-import { splitString } from '@utils/helpers';
 import type { Loader } from 'astro/loaders';
+import { postSchema } from "@content/schemas/post";
+import { gqLPostsTransformer } from "./transformers/posts";
+import type { Post } from '@content/types/post';
+
 
 console.log('loading graphql content');
 
+
 export const gqlLoader: Loader = {
-  name: 'gqlPosts-loader',
+  name: 'gql-posts-loader',
   load: async (context) => {
     const response =  await fetch(`http://astrowpheadless.local/graphql`, 
     {
@@ -39,39 +43,19 @@ export const gqlLoader: Loader = {
       }),
     });
 
+    
     const { data: { posts: { nodes: posts}} } = await response.json();
-    console.log('body:', posts[5].authors);
+    const myPosts = posts.map(gqLPostsTransformer);
 
-    // Must return an array of entries with an id property, or an object with IDs as keys and entries as values
-
-    const myPosts = await posts.map((post) => {
-      const { content } = post;
-      const pagesContent = splitString(content, /<!--nextpage-->/ );
-      const pages = pagesContent.map(page =>  {
-        return { content: page} 
-      });
-
-      const authors = post.authors.nodes.map(author => author);
-
-      return {
-        ...post,
-        id: post.id.toString(),
-        // slug: post.slug,
-        // date: post.date,
-        authors,
-        // data: post,
-        pages: pages,
-      }
-    });
-
-    // console.log('posts', myPosts);
+    myPosts.forEach((post: Post) => console.log(post.title));
 
     context.store.set({
       id: '26t61t21g2t6',
       data: myPosts
     });
   },
-  // schema: async () => z.object({
-  //   // ...
-  // })
+  schema: postSchema,
 };
+
+
+

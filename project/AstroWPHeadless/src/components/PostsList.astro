@@ -1,30 +1,26 @@
 ---
+import type { Post } from '@content/types/post';
 import { Image } from 'astro:assets';
 
 const { posts, section } = Astro.props;
 
-function getFeaturedImgSourceUrl(post) {
-  return post._embedded['wp:featuredmedia'][0].source_url;
-}
-
-// console.log('posts', posts[0]);
-
+console.log(posts.length);
 ---
 
 <h1>Post List Component</h1>
 <div>
-  {posts.map(post => 
+  {posts.map((post: Post) => 
     <div class="mb-20">
-      <Image src={getFeaturedImgSourceUrl(post)} alt="Featured image" width="500" height="200" format="avif"/>
+      <Image src={post.featuredImageUrl} alt="Featured image" width="500" height="200" format="avif"/>
       <h2 class="mt-5 mb-1">
         <a 
           href={`/${section}/${post.slug}`}
           class="text-blue-800 hover:text-blue-500 text-2xl"
         >
-          {post.title.rendered}
+          {post.title}
         </a>
       </h2>
-      <div set:html={post.excerpt.rendered} />
+      <div set:html={post.excerpt} />
     </div>
   )}
   

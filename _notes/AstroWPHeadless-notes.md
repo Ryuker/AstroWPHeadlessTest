@@ -89,7 +89,7 @@
   - best to add it to `static` folder in this project since this just gets copied to the repo branch during deploy
   - this is necessary since page css files are created with an underscore.
 
-- 
+- Astro 5.5 builds images a lot faster than the version SmashEurope is using. So would be wise to look into upgrading the site to that version.
 
 
 

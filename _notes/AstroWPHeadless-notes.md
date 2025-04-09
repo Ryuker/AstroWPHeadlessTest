@@ -53,6 +53,13 @@
   - [v] build to static pages in dist folder
   - [v] try to deploy to github pages
 
+- Implement Markdown Support
+  - [] Install Markdown Plugin in WP
+    - [] test results from API
+    - [] process markdown in client components
+    - [] implement code block rendering
+
+
 - [] Test WP HTML Tags
 - [] Test Custom WP Block output in fetch result
 

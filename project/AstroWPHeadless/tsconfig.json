@@ -14,6 +14,7 @@
       "@integrations/*": ["src/integrations/*"],
       "@loaders/*": ["src/loaders/*"],
       "@content/*": ["src/content/*"],
+      "@styles/*": ["src/styles/*"],
     },
   },
 }

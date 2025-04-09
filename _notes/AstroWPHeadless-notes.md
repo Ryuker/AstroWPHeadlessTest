@@ -49,9 +49,9 @@
     - [v] there should be no knowledge in the components of the API data specifics.
   
 
-- [] Build tests
-  - [] build to static pages in dist folder
-  - [] try to deploy to github pages
+- [v] Build tests
+  - [v] build to static pages in dist folder
+  - [v] try to deploy to github pages
 
 - [] Test WP HTML Tags
 - [] Test Custom WP Block output in fetch result
@@ -83,5 +83,13 @@
 
 # Best practises:
 - add `loading="eager"` to images when you want to prevent lazy loading
+
+# Deployment Notes
+- `add a .nojekyll` file in the root of `gh-pages` branch
+  - best to add it to `static` folder in this project since this just gets copied to the repo branch during deploy
+  - this is necessary since page css files are created with an underscore.
+
+- 
+
 
 

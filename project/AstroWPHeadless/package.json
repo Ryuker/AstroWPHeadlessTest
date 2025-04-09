@@ -2,7 +2,10 @@
   "name": "astrowpheadless",
   "type": "module",
   "version": "0.0.1",
+  "homepage": "https://github.com/ryuker",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "astro build",
     "dev": "astro dev",
     "preview": "astro preview",
@@ -11,9 +14,13 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.1",
     "astro": "^5.5.5",
+    "astro-relative-links": "^0.4.2",
     "astro-remote": "^0.3.4",
     "node-fetch": "^2.6.7",
     "p-limit": "^3.0.2",
     "tailwindcss": "^4.1.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.2.0"
   }
 }

@@ -81,4 +81,7 @@
 - Setting up ZOD Schema - [guide](https://andrewkepson.com/blog/headless-wordpress/build-time-astro-content-layer-api/)
 - Using ZOD for Types - [guide](https://www.allthingstypescript.dev/p/using-zod-schemas-as-source-of-truth)
 
+# Best practises:
+- add `loading="eager"` to images when you want to prevent lazy loading
+
 

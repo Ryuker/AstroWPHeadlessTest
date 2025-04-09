@@ -9,7 +9,7 @@ const { posts, section } = Astro.props;
 <div>
   {posts.map((post: Post) => 
     <div class="mb-20">
-      <Image src={post.featuredImageUrl} alt="Featured image" width="500" height="200" format="avif"/>
+      <Image src={post.featuredImageUrl} alt="Featured image" width="500" height="200" format="avif" loading="eager"/>
       <h2 class="mt-5 mb-1">
         <a 
           href={`/${section}/${post.slug}`}

@@ -2,7 +2,6 @@
 import PostsList from '@components/PostsList.astro';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import TestGQL from '@components/TestGQL.astro';
 import type { Post } from '@content/types/post';
 
 
@@ -20,7 +19,5 @@ const filteredPosts = posts.filter((_: any, index: number) => index < 4);
     <PostsList section="posts" posts={filteredPosts}/>
     <a href="/posts" class="p-3 hover:text-blue-300 border-2 rounded-lg">See All Posts</a>
   </div>
-
-  <TestGQL />
 
 </Layout>

@@ -12,8 +12,6 @@ export const restLoader: Loader = {
     const posts = await response.json();
     const myPosts = posts.map(restPostsTransformer);
 
-    console.log(myPosts[0]);
-
     context.store.set({
       id: '23h2bhbhb22b',
 			data: myPosts

@@ -1,13 +1,13 @@
 ---
 const { slug, length, currentUrl, currentPage, firstUrl, prevUrl, nextUrl, lastUrl } = Astro.props;
 
-console.log('slug:', slug );
-console.log('length:', length );
-console.log('currentUrl:', currentUrl );
-console.log('firstUrl:', firstUrl );
-console.log('prevUrl:', prevUrl );
-console.log('nextUrl:', nextUrl );
-console.log('lastUrl:', lastUrl );
+// console.log('slug:', slug );
+// console.log('length:', length );
+// console.log('currentUrl:', currentUrl );
+// console.log('firstUrl:', firstUrl );
+// console.log('prevUrl:', prevUrl );
+// console.log('nextUrl:', nextUrl );
+// console.log('lastUrl:', lastUrl );
 
 const pageUrls = Array.from({ length }, (_, index) => {
   if (prevUrl) 
@@ -15,8 +15,6 @@ const pageUrls = Array.from({ length }, (_, index) => {
   else 
     return `${currentUrl}${index === 0 ? '' : `/${index + 1}`}`;
 });
-
-console.log(currentUrl);
 ---
 
 <div class="text-red-300 my-10">

@@ -3,7 +3,6 @@ import type { GetStaticPaths } from 'astro';
 import PostLayout from "@layouts/PostLayout.astro";
 import { Markup } from 'astro-remote';
 import WPImage from '@components/wp/WPImage.astro';
-import { splitString } from '@utils/helpers';
 import Pagination from '@components/Pagination.astro';
 import { getCollection } from 'astro:content';
 import type { Post } from '@content/types/post';
@@ -53,21 +52,13 @@ const {
   content
 } = page.data[0];
 
-// console.log('page', page);
-
-
-console.log(authors);
-
 const dateFormatted = new Date(date).toLocaleDateString();
 
 function capitalizeName(name: string){
-  console.log('test', name);
   const firstLetter = name[0].toUpperCase();
   const rest = name.slice(1);
   return `${firstLetter}${rest}`;
 }
-
-console.log(page);
 ---
 
 <PostLayout>

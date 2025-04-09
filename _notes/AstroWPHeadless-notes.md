@@ -29,7 +29,7 @@
   - [v] pull in the posts from the collection into [...page].astro
   - [v] pull in the posts from the collection into [index].astro
   - setup ZOD
-    [] setup ZOD schema for wordpress posts
+    [v] setup ZOD schema for wordpress posts
 
   - [v] implement custom loader for fetching
     - [v] use loader in content collection of posts

@@ -47,7 +47,7 @@ export const gqlLoader: Loader = {
     const { data: { posts: { nodes: posts}} } = await response.json();
     const myPosts = posts.map(gqLPostsTransformer);
 
-    myPosts.forEach((post: Post) => console.log(post.title));
+    // myPosts.forEach((post: Post) => console.log(post.title));
 
     context.store.set({
       id: '26t61t21g2t6',

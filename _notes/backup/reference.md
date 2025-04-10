@@ -54,3 +54,25 @@ const {
 
 const dateFormatted = new Date(date).toLocaleDateString();
 ```
+
+
+# GraphQL Query to get Code Block attributes
+``` GraphQL
+query NewQuery {
+  post(id: "cG9zdDo3") {
+    editorBlocks {
+      name
+      ... on KevinbatdorfCodeBlockPro {
+        attributes {
+          language
+          lineNumbers
+          code
+          copyButton
+          copyButtonString
+        }
+        renderedHtml
+			}
+    }
+  }
+}
+```

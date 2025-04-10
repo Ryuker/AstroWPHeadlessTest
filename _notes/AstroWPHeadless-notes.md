@@ -54,8 +54,14 @@
   - [v] try to deploy to github pages
 
 - Implement Markdown Support
-  - [] Install Markdown Plugin in WP
+  - [v] Install Markdown Plugin in WP
+    - bunch of options for this, I went for Code Block Pro - [video](https://www.youtube.com/watch?v=gvYWfY4jrnc)
+      - this renders it out properly on the wordpress frontend 
+      - but also allows a graphql node export so we can copy the unrendered code
     - [] test results from API
+    - [] render code on frontend, need to copy over the css (see vid)
+    - [] add copy button to copy the code to clipboard
+    
     - [] process markdown in client components
     - [] implement code block rendering
 

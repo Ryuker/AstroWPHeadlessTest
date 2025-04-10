@@ -57,7 +57,8 @@
   - [v] Install Markdown Plugin in WP
     - bunch of options for this, I went for Code Block Pro - [video](https://www.youtube.com/watch?v=gvYWfY4jrnc)
       - this renders it out properly on the wordpress frontend 
-      - but also allows a graphql node export so we can copy the unrendered code
+      - but also allows a graphql node export so we can copy the unrendered code 
+        - this requires this plugin [github repo](https://github.com/wpengine/wp-graphql-content-blocks?tab=readme-ov-file)
     - [] test results from API
     - [] render code on frontend, need to copy over the css (see vid)
     - [] add copy button to copy the code to clipboard

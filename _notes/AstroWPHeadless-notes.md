@@ -53,12 +53,9 @@
   - [v] build to static pages in dist folder
   - [v] try to deploy to github pages
 
-- Implement Markdown Support
-  - [v] Install Markdown Plugin in WP
-    - bunch of options for this, I went for Code Block Pro - [video](https://www.youtube.com/watch?v=gvYWfY4jrnc)
-      - this renders it out properly on the wordpress frontend 
-      - but also allows a graphql node export so we can copy the unrendered code 
-        - this requires this plugin [github repo](https://github.com/wpengine/wp-graphql-content-blocks?tab=readme-ov-file)
+- Implement CodeHighlighting Support
+  - [v] Install Code Block Pro and Content Blocks plugins in WP(see below)
+    - [] setup query
     - [] test results from API
     - [] render code on frontend, need to copy over the css (see vid)
     - [] add copy button to copy the code to clipboard
@@ -94,6 +91,12 @@
 
 - Setting up ZOD Schema - [guide](https://andrewkepson.com/blog/headless-wordpress/build-time-astro-content-layer-api/)
 - Using ZOD for Types - [guide](https://www.allthingstypescript.dev/p/using-zod-schemas-as-source-of-truth)
+
+- Code Highlighting
+- bunch of options for this, I went for Code Block Pro - [video](https://www.youtube.com/watch?v=gvYWfY4jrnc)
+      - this renders it out properly on the wordpress frontend 
+      - but also allows a graphql node export so we can copy the unrendered code 
+        - this requires this plugin [github repo](https://github.com/wpengine/wp-graphql-content-blocks?tab=readme-ov-file)
 
 # Best practises:
 - add `loading="eager"` to images when you want to prevent lazy loading

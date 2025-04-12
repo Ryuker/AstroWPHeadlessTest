@@ -36,6 +36,19 @@ export const gqlLoader: Loader = {
                   }
                 }
                 content
+                editorBlocks {
+                  name
+                  ... on KevinbatdorfCodeBlockPro {
+                    attributes {
+                      language
+                      lineNumbers
+                      code
+                      copyButton
+                      copyButtonString
+                    }
+                    renderedHtml
+                  }
+                }
               }
             }
           }

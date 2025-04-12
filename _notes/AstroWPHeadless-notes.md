@@ -61,6 +61,9 @@
     - [] add copy button to copy the code to clipboard
     
     - [] process markdown in client components
+      - [] pass props from div elements to WPDiv
+        - [] replace with WPCodeBlock if it has the code block div class
+          - else just render the div as is.
     - [] implement code block rendering
 
 

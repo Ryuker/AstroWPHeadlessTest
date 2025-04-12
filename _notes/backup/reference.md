@@ -76,3 +76,19 @@ query NewQuery {
   }
 }
 ```
+
+# Sanitice Code Blocks
+```Astro
+<Markup 
+  content={content} 
+  components={{ 
+    img: WPImage,
+    '`<div class="wp-block-kevinbatdorf-code-block-pro">`': WPCodeBlock,
+  }}
+  sanitize={{
+    dropElements: [`<div class="wp-block-kevinbatdorf-code-block-pro">`]
+  }} 
+/>
+
+```
+

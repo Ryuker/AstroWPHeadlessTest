@@ -8,6 +8,7 @@ export const gqLPostsTransformer = (node) => ({
   excerpt: node.excerpt || "",
   featuredImageUrl: node.featuredImage.node.sourceUrl || "",
   authors: node.authors.nodes.map(author => author) || [],
+  editorBlocks: hydrateEditorBlocks(node.editorBlocks) || undefined,
   pages: getPages(node.content),
 });
 
@@ -35,3 +36,15 @@ function hydrateAuthors(authors){
   const authorsArray = authors.map(author => ({ id: author.id, name: author.display_name }));
   return authorsArray;
 }
+
+function hydrateEditorBlocks(editorBlocks){
+  const codeBlockArray = editorBlocks.map(block => {
+    if (block.name === 'kevinbatdorf/code-block-pro'){
+      console.log(block);
+      return block;
+    }
+  });
+  return codeBlockArray;
+}
+
+

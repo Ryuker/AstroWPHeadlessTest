@@ -59,12 +59,14 @@
     - [] test results from API
     - [] render code on frontend, need to copy over the css (see vid)
     - [] add copy button to copy the code to clipboard
-    
-    - [] process markdown in client components
-      - [] pass props from div elements to WPDiv
-        - [] replace with WPCodeBlock if it has the code block div class
-          - else just render the div as is.
-    - [] implement code block rendering
+     
+    - [v] implement editorBlock rendering
+      - [v] processing editorBlocks in each page
+      - [v] WPBlockRenderer
+        - [v] maps through all the editorBlocks and checks their name to pick the right component to render the block with
+        - [] WP Code Block to render code blocks
+          - [v] render markdown
+          - [] copy code button 
 
 
 - [] Test WP HTML Tags

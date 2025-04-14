@@ -5,7 +5,7 @@ import { Markup } from 'astro-remote';
 import WPImage from '@components/wp/WPImage.astro';
 import Pagination from '@components/Pagination.astro';
 import { getCollection } from 'astro:content';
-import type { Post } from '@content/types/post';
+import type { GQLPost } from '@content/types/post';
 import WPCodeBlock from '@components/wp/WPCodeBlock.astro';
 
 // const res = await fetch(`http://astrowpheadless.local/wp-json/wp/v2/posts?slug=${slug}`);
@@ -22,7 +22,7 @@ import WPCodeBlock from '@components/wp/WPCodeBlock.astro';
 
 // Only necessary in static mode
 export const getStaticPaths = (async ({paginate}) => {
-  const posts = await getCollection('GQLPosts').then(data => data[0].data) as Post[];
+  const posts = await getCollection('GQLPosts').then(data => data[0].data) as GQLPost[];
 
   const pages = posts.flatMap((post) => {
     const subPages = paginate(post.pages, {

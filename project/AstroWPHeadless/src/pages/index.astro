@@ -2,10 +2,10 @@
 import PostsList from '@components/PostsList.astro';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import type { Post } from '@content/types/post';
+import type { GQLPost } from '@content/types/post';
 
 
-const posts = await getCollection('GQLPosts').then(data => data[0].data) as Post[];
+const posts = await getCollection('GQLPosts').then(data => data[0].data) as GQLPost[];
 
 const filteredPosts = posts.filter((_: any, index: number) => index < 4);
 

@@ -1,14 +1,14 @@
 ---
 import Pagination from '@components/Pagination.astro';
 import PostsList from '@components/PostsList.astro';
-import type { Post } from '@content/types/post';
+import type { GQLPost } from '@content/types/post';
 import Layout from '@layouts/Layout.astro';
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 
 
 export const getStaticPaths = (async ({paginate}) => {
-  const posts = await getCollection('posts').then(data => data[0].data) as Post[];
+  const posts = await getCollection('GQLPosts').then(data => data[0].data) as GQLPost[];
 
   return paginate(posts, {
     pageSize: 2,

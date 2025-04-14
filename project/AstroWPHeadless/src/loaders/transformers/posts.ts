@@ -8,7 +8,7 @@ export const gqLPostsTransformer = (node) => ({
   excerpt: node.excerpt || "",
   featuredImageUrl: node.featuredImage.node.sourceUrl || "",
   authors: node.authors.nodes.map(author => author) || [],
-  editorBlocks: hydrateEditorBlocks(node.editorBlocks) || undefined,
+  editorBlocks: node.editorBlocks || undefined,
   pages: getPages(node.content),
 });
 

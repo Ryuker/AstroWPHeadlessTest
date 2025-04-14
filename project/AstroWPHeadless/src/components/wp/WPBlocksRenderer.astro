@@ -1,7 +1,25 @@
 ---
 import { Markup } from "astro-remote"; 
+import WPImage from "./WPImage.astro";
+import WPCodeBlock from "./WPCodeBlock.astro";
 
 const { blocks } = Astro.props;
 ---
 
 <div>Block Renderer Component</div>
+
+{ blocks.map(block => {
+  if(block.name === 'kevinbatdorf/code-block-pro'){
+    return <WPCodeBlock attributes={block.attributes} renderedHtml={block.renderedHtml} />
+  }
+  else {
+    return <div>
+      <Markup 
+        content={block.renderedHtml} 
+        components={{ 
+          img: WPImage,
+        }}
+      />
+    </div>
+  } 
+})}  

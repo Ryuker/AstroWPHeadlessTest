@@ -1,7 +1,24 @@
 ---
-const {  } = Astro.props;
-
-console.log('detected');
+import { Markup, Markdown } from "astro-remote";
+const { attributes, renderedHtml } = Astro.props;
 ---
 
-<div class="my-code-block">code block test</div>
+<div class="my-code-block space-y-5">
+  <div>
+    <span>rendered markdown:</span>
+    <Markdown content={attributes.code} />
+  </div>
+  <div>
+    <span>language:</span>  
+    <span>{ attributes.language }</span>
+  </div> 
+
+  <>
+    <span>renderedHTML code:</span>
+    
+    <button class="hover:text-blue-300 cursor-pointer" type="button">copy code</button>
+    <Markup content={renderedHtml} />
+  </div>
+  
+  
+</div>

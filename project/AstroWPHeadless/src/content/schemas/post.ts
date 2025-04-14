@@ -30,6 +30,6 @@ export const restPostSchema = postSchema.extend({
 })
 
 export const gqlPostSchema = postSchema.extend({
-  pagesBlocks: z.array(z.array(blockSchema)),
+  pages: z.array(z.array(blockSchema)),
 })
 

@@ -1,18 +1,18 @@
 import { defineCollection } from "astro:content";
 import { restLoader } from "@loaders/posts";
 import { gqlLoader } from "@loaders/gqlPosts";
-import { postSchema } from "./schemas/post";
+import { gqlPostSchema, postSchema, restPostSchema } from "./schemas/post";
 
 const posts = defineCollection({
   loader: restLoader,
-  schema: postSchema,
+  schema: restPostSchema
 });
 
 
 const GQLPosts = defineCollection({
   loader: gqlLoader,
   // schema: /* ... */
-  schema: postSchema,
+  schema: gqlPostSchema,
 });
 
 export const collections = {

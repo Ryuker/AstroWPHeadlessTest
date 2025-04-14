@@ -8,8 +8,7 @@ export const gqLPostsTransformer = (node) => ({
   excerpt: node.excerpt || "",
   featuredImageUrl: node.featuredImage.node.sourceUrl || "",
   authors: node.authors.nodes.map(author => author) || [],
-  editorBlocks: node.editorBlocks || undefined,
-  pages: getPages(node.content),
+  pagesBlocks: getPagesBlocks(node.editorBlocks),
 });
 
 export const restPostsTransformer = (post) => ({
@@ -30,6 +29,35 @@ function getPages(content: string){
     return { content: page} 
   });
   return pages;
+}
+
+// Return an array containing an array per page populated with the page blocks
+// - splits by checking for block name is 'core/nextpage' 
+export function getPagesBlocks(blocks){
+  const pageStarts = blocks.map((block, index: number) => { 
+    if (index === 0)
+      return { index: 0 }
+    
+    else if (block.name === 'core/nextpage'){
+      return { index }
+    }
+  }).filter(item => item != undefined);
+  
+  const pagesBlocks = pageStarts.map((pageStart, index) => {
+
+    // slice from last page break index till next page break
+    if(index < pageStarts.length -1){
+      const pageBlock = blocks.slice(pageStart.index, pageStarts[index + 1].index ).filter(block => block.name !== 'core/nextpage');
+      return pageBlock;
+    }
+      
+    // slice from last pageStart index to end of array
+    else
+      return blocks.slice(pageStart.index).filter(block => block.name !== 'core/nextpage');
+
+  });
+
+  return pagesBlocks;
 }
 
 function hydrateAuthors(authors){

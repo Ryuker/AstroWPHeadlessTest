@@ -104,6 +104,7 @@
         - this requires this plugin [github repo](https://github.com/wpengine/wp-graphql-content-blocks?tab=readme-ov-file)
 - code block rendering in Astro - [video](https://www.youtube.com/watch?v=47qChv5YKOs)
   - there's a built in `Code` component apparantly which should work fine.
+  - `Expressive Code` offers more options - [docs](https://expressive-code.com/key-features/code-component/)
 
 # Best practises:
 - add `loading="eager"` to images when you want to prevent lazy loading

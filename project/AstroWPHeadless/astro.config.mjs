@@ -6,6 +6,11 @@ import relativeLinks from 'astro-relative-links';
 
 // https://astro.build/config
 export default defineConfig({
+  markdown: {
+    shikiConfig: {
+      theme: 'catppuccin-frappe',
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },

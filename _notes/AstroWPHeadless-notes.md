@@ -68,8 +68,23 @@
           - [v] render markdown
           - [] copy code button 
 
+- [] Categories
+  - [] 
 
 - [] Test WP HTML Tags
+  - [] Image: 
+    - comes in as Figure with `class="wp-block-image size-large"`
+  - [] p element
+    - doesn't have any styling
+    - [] test links in paragraphs
+    - [] test strong and cursive versions
+  
+  - [] ul element
+    - []  li element
+  - [] media elements
+    - [] video
+    - [] embedded
+
 - [] Test Custom WP Block output in fetch result
 
 

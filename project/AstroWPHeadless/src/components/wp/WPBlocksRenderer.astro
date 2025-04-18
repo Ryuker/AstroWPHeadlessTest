@@ -2,6 +2,7 @@
 import { Markup } from "astro-remote"; 
 import WPImage from "./WPImage.astro";
 import WPCodeBlock from "./WPCodeBlock.astro";
+import WPH2 from "./WPH2.astro";
 
 const { blocks } = Astro.props;
 ---
@@ -17,9 +18,22 @@ const { blocks } = Astro.props;
       <Markup 
         content={block.renderedHtml} 
         components={{ 
-          img: WPImage,
+          img: WPImage
         }}
       />
     </div>
   } 
-})}  
+})}
+
+<style is:global>
+  @reference "tailwindcss/theme.css";
+
+  h2.wp-block-heading {
+    @apply text-2xl;
+  }
+
+  h3.wp-block-heading {
+    @apply text-xl;
+  }
+  
+</style>

@@ -55,10 +55,8 @@
 
 - Implement CodeHighlighting Support
   - [v] Install Code Block Pro and Content Blocks plugins in WP(see below)
-    - [] setup query
-    - [] test results from API
-    - [] render code on frontend, need to copy over the css (see vid)
-    - [] add copy button to copy the code to clipboard
+    - [v] setup query
+    - [v] test results from API
      
     - [v] implement editorBlock rendering
       - [v] processing editorBlocks in each page
@@ -67,12 +65,18 @@
         - [] WP Code Block to render code blocks
           - [v] render markdown
           - [v] code webcomponent  
-            - [] copy code button
+            - [v] copy code button
               - [v] copy to clipboard 
-              - [] show code was copied in code block
+              - [v] show code was copied in code block
+              - [] copy code icon
+                - [] copyable state color
+                - [] copied state color, disable button
 
 - [] Categories
-  - [] 
+  - [] display categories below post
+  - [] clicking on category goes to page of this category
+    - this page contains an overview of posts of this category
+  - 
 
 - [] Test WP HTML Tags
   - [] Image: 
@@ -88,10 +92,6 @@
     - [] video
     - [] embedded
   - 
-
-  
-
-- [] Test Custom WP Block output in fetch result
 
 
 

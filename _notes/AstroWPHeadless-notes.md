@@ -78,12 +78,15 @@
     - doesn't have any styling
     - [] test links in paragraphs
     - [] test strong and cursive versions
-  
+  - [] h2/h3 element
   - [] ul element
     - []  li element
   - [] media elements
     - [] video
     - [] embedded
+  - 
+
+  
 
 - [] Test Custom WP Block output in fetch result
 

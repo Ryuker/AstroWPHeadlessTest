@@ -66,7 +66,10 @@
         - [v] maps through all the editorBlocks and checks their name to pick the right component to render the block with
         - [] WP Code Block to render code blocks
           - [v] render markdown
-          - [] copy code button 
+          - [v] code webcomponent  
+            - [] copy code button
+              - [v] copy to clipboard 
+              - [] show code was copied in code block
 
 - [] Categories
   - [] 

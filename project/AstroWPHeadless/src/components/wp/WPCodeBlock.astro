@@ -33,10 +33,43 @@ function myFunction(){
     
     
     <div class="relative">
-      <button class="text-blue-200 hover:text-blue-300 cursor-pointer absolute right-2" type="button">copy code</button>
-      <Code class="p-4 rounded-lg" code={attributes.code} lang={attributes.language} theme="catppuccin-frappe"/>
+      <astro-code data-code={attributes.code}>
+        <button class="text-blue-200 hover:text-blue-300 cursor-pointer absolute right-2" type="button">copy code</button>
+        <Code class="p-4 rounded-lg" code={attributes.code} lang={attributes.language} theme="catppuccin-frappe"/>
+      </astro-code>
     </div>
   </div>
-  
-  
 </div>
+
+<script>
+
+  class Code extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector('button');
+      const code = this.dataset.code;
+
+      function copyCode() {
+        if (code)
+          navigator.clipboard.writeText(code);
+        
+          if (button){
+          button.innerHTML = 'copied';
+          button.disabled = true;
+          button.classList.remove('cursor-pointer', 'hover:text-blue-300');
+          button.classList.add('cursor-not-allowed');
+        }  
+      }
+
+      if (button) {
+        button.addEventListener('click', () => {
+          copyCode();
+        });
+      }
+    }
+    
+
+  }
+
+  customElements.define('astro-code', Code);
+
+</script>

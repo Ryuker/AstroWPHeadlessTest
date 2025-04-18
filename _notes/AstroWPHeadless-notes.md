@@ -79,15 +79,15 @@
   - 
 
 - [] Test WP HTML Tags
-  - [] Image: 
+  - [v] Image: 
     - comes in as Figure with `class="wp-block-image size-large"`
-  - [] p element
+  - [v] p element
     - doesn't have any styling
-    - [] test links in paragraphs
-    - [] test strong and cursive versions
-  - [] h2/h3 element
-  - [] ul element
-    - []  li element
+    - [v] test links in paragraphs
+    - [v] test strong and cursive versions
+  - [v] h2/h3 element
+  - [v] ul element
+    - [v]  li element
   - [] media elements
     - [] video
     - [] embedded

@@ -5,6 +5,7 @@ import WPCodeBlock from "./WPCodeBlock.astro";
 import WPH2 from "./WPH2.astro";
 
 const { blocks } = Astro.props;
+console.log(blocks);
 ---
 
 <div>Block Renderer Component</div>
@@ -12,6 +13,9 @@ const { blocks } = Astro.props;
 { blocks.map(block => {
   if(block.name === 'kevinbatdorf/code-block-pro'){
     return <WPCodeBlock attributes={block.attributes} renderedHtml={block.renderedHtml} />
+  }
+  else if(block.name === 'core/list-item'){
+    return;
   }
   else {
     return <div>
@@ -38,6 +42,14 @@ const { blocks } = Astro.props;
 
   p a {
     @apply hover:text-blue-400 underline hover:no-underline
+  }
+
+  ul.wp-block-list li {
+    @apply list-disc list-inside
+  }
+
+  ol.wp-block-list li {
+    @apply list-decimal list-inside
   }
 
 </style>
